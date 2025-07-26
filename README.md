@@ -1,4 +1,4 @@
-# 🚀 Full Stack App Deployment on EC2 with NGINX Reverse Proxy
+    # 🚀 Full Stack App Deployment on EC2 with NGINX Reverse Proxy
 
 This project demonstrates a simple full-stack deployment using:
 - React frontend
@@ -50,7 +50,6 @@ project/
 
 ## 🔧 Backend Setup (Node.js + PM2)
 
-```yaml
 
 ```bash
 # SSH into EC2
@@ -69,10 +68,11 @@ npm install
 pm2 start index.js --name testapi
 pm2 save
 pm2 startup
----
+```
 ##⚙️ Frontend Setup (React)
 
 # Navigate to frontend
+```sh
 cd ../frontend
 
 # Install dependencies
@@ -84,12 +84,13 @@ npm run build
 # Copy to NGINX public directory
 sudo mkdir -p /var/www/testapp
 sudo cp -r build/* /var/www/testapp/
-
+```
 ## 🌐 NGINX Configuration
 
 # Create config file
+```sh
 sudo nano /etc/nginx/sites-available/testapp
-
+```
 # Frontend on testapp.infinydev.com (via IP for now)
 server {
     listen 80;
@@ -101,7 +102,7 @@ server {
     location / {
         try_files $uri /index.html;
     }
-}
+
 
 # Backend on testapi.infinydev.com (via IP + Host header for now)
 server {
@@ -116,7 +117,7 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-}
+
 
 
 ## Enable site and restart NGINX
@@ -124,7 +125,7 @@ server {
 sudo ln -s /etc/nginx/sites-available/testapp /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
-
+```
 ##🚦 PM2 Process Commands
 
 ```bash
@@ -134,5 +135,7 @@ pm2 stop testapi        # Stop backend
 pm2 logs testapi        # View logs
 pm2 save                # Save processes on reboot
 pm2 startup             # Generate startup script
-
+```
 ##📸 Screenshots
+
+
