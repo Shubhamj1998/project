@@ -1,4 +1,4 @@
-    # 🚀 Full Stack App Deployment on EC2 with NGINX Reverse Proxy
+# 🚀 Full Stack App Deployment on EC2 with NGINX Reverse Proxy
 
 This project demonstrates a simple full-stack deployment using:
 - React frontend
@@ -126,7 +126,7 @@ sudo ln -s /etc/nginx/sites-available/testapp /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
-##🚦 PM2 Process Commands
+## 🚦 PM2 Process Commands
 
 ```bash
 pm2 list                # View running apps
