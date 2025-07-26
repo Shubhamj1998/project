@@ -136,6 +136,10 @@ pm2 logs testapi        # View logs
 pm2 save                # Save processes on reboot
 pm2 startup             # Generate startup script
 ```
-##📸 Screenshots
+## 📸 Screenshots
+### ✅ PM2 Process List
+![PM2 Screenshot frontend](https://github.com/Shubhamj1998/project/blob/3c92e668a7477784fb401c86c67e174d58a72185/Screenshot%201.png)
+![PM2 Screenshot backend](https://github.com/Shubhamj1998/project/blob/3c92e668a7477784fb401c86c67e174d58a72185/Screenshot%202.png)
 
-
+### ✅ Frontend Working
+![Frontend Screenshot](https://github.com/Shubhamj1998/project/blob/3c92e668a7477784fb401c86c67e174d58a72185/Screenshot%203.png)
