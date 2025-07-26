@@ -4,7 +4,9 @@ function App() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    fetch('http://54.211.11.10:3000/api')
+    fetch('http://54.211.11.10:3000/api', {
+      headers: { Host: '54.211.11.10' }
+    })
       .then(response => response.json())
       .then(data => setData(data.message))
       .catch(error => setData('Error connecting to backend'));
