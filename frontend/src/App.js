@@ -4,7 +4,7 @@ function App() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    fetch('http://testapi.infinydev.com/api')
+    fetch('http://54.211.11.10:3000/api')
       .then(response => response.json())
       .then(data => setData(data.message))
       .catch(error => setData('Error connecting to backend'));
