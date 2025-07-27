@@ -204,4 +204,4 @@ pipeline {
    ```
  
 ## 📸 Jenkins CICD Screenshot
-
+![Sinmple Jenkins CICD](https://github.com/Shubhamj1998/project/blob/4af349b3645be8b047c067f88c143647e1f3eca6/Screenshot%204.png)
