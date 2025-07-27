@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-      <h1>Frontend React App v1</h1>
+      <h1>Frontend React App !!</h1>
       <p>{data}</p>
     </div>
   );
