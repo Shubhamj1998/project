@@ -143,3 +143,65 @@ pm2 startup             # Generate startup script
 
 ### ✅ Frontend Working
 ![Frontend Screenshot](https://github.com/Shubhamj1998/project/blob/3c92e668a7477784fb401c86c67e174d58a72185/Screenshot%203.png)
+
+
+## 📸 Jenkins CICD
+
+# Declarative pipeline script
+```groovy
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Clone') {
+      steps {
+        // ✅ Clone from the main branch
+        git branch: 'main', url: 'https://github.com/Shubhamj1998/project.git'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh '''
+          echo "📦 Building frontend..."
+          cd frontend
+          npm install
+          npm run build   # Output is in frontend/build
+
+          echo "📦 Setting up backend..."
+          cd ../backend
+          npm install
+        '''
+      }
+    }
+
+    stage('Deploy') {
+    steps {
+    sshagent(['ec2-ssh-key']) {
+      sh '''
+        echo "🚀 Uploading frontend build to EC2 temporary directory"
+        ssh -o StrictHostKeyChecking=no ubuntu@54.211.11.10 'mkdir -p /home/ubuntu/tmp-frontend'
+        scp -o StrictHostKeyChecking=no -r frontend/build/* ubuntu@54.211.11.10:/home/ubuntu/tmp-frontend/
+
+        echo "📂 Moving frontend files to /var/www/testapp/ using sudo"
+        ssh -o StrictHostKeyChecking=no ubuntu@54.211.11.10 'sudo cp -r /home/ubuntu/tmp-frontend/* /var/www/testapp/'
+
+        echo "🚀 Uploading backend code to EC2"
+        ssh -o StrictHostKeyChecking=no ubuntu@54.211.11.10 'mkdir -p /home/ubuntu/project/backend'
+        scp -o StrictHostKeyChecking=no -r backend/* ubuntu@54.211.11.10:/home/ubuntu/project/backend/
+
+        echo "🔁 Restarting backend using PM2"
+        ssh -o StrictHostKeyChecking=no ubuntu@54.211.11.10 '
+          cd /home/ubuntu/project/backend
+          npm install
+          pm2 restart backend || pm2 start index.js --name backend
+          pm2 save
+        '
+      '''
+    }  } } } }
+
+   ```
+ 
+## 📸 Jenkins CICD Screenshot
+
