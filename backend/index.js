@@ -6,7 +6,7 @@ const port = 3000;
 app.use(cors());
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the backend!' });
+  res.json({ message: 'Hello from the backend! updated just now' });
 });
 
 app.listen(port, () => {
